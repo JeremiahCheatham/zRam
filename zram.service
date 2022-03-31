@@ -1,0 +1,11 @@
+[Unit]
+Description=zRam block devices swapping
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c "modprobe zram && echo lz4 > /sys/block/zram0/comp_algorithm && echo $(($( grep MemTotal /proc/meminfo | grep -o '[0-9]*' ) / 500))M > /sys/block/zram0/disksize && mkswap --label zram0 /dev/zram0 && swapon --priority 100 /dev/zram0"
+ExecStop=/usr/bin/bash -c "swapoff /dev/zram0 && rmmod zram"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
