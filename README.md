@@ -5,6 +5,7 @@ ZRam is a kernel module that provides a compressed block device in RAM. This blo
 
 [zRam for impoving performance at wiki.archlinux.org](https://wiki.archlinux.org/title/improving_performance#zram_or_zswap)
 
+
 # Try out zRam
 ## This assumes there is no current swap setup.
 
@@ -37,6 +38,7 @@ If the above commands didn't work for you. You can choose a number manually in M
 If htop is installed it will show the active RAM/Swap size.\
 `htop`
 
+
 # Disable zRam.
 ## This isn't needed if zram is working. zRam will not be recreated on next boot. See systemd section.
 ### Disabling zram swap.
@@ -45,6 +47,24 @@ If htop is installed it will show the active RAM/Swap size.\
 ### Unloading zRam kernel module.
 `sudo rmmod zram`
 
+
 # Auto create zRam with systemd service.
 ## A simple zram.service file using the above commands can be used to make a systemd service.
 ### Download zram.service
+`wget https://raw.githubusercontent.com/JeremiahCheatham/zRam/main/zram.service`\
+or\
+`curl -LO https://raw.githubusercontent.com/JeremiahCheatham/zRam/main/zram.service`
+### Copy zram.service file into place.
+`sudo cp zram.service /etc/systemd/system`
+### Enable zram.service.
+`sudo systemctl enable zram`
+### Start zram.service.
+`sudo systemctl start zram`
+
+# Disbale or remove zram.service.
+### Stop zram.service.
+`sudo systemctl stop zram`
+### Disable zram.service.
+`sudo systemctl disable zram`
+### Remove zram.service file. First stop and disable zram.service.
+`sudo rm /etc/systemd/system/zram.service`
