@@ -5,6 +5,8 @@ ZRam is a kernel module that provides a compressed block device in RAM. This blo
 
 [zRam for impoving performance at wiki.archlinux.org](https://wiki.archlinux.org/title/improving_performance#zram_or_zswap)
 
+[Create zRam on arch linux techrapiduk.blogspot.com](https://techrapiduk.blogspot.com/2017/04/create-zram-memory-compression-on-arch-linux.html)
+
 
 # Try out zRam
 ## This assumes there is no current swap setup.
@@ -60,6 +62,7 @@ or\
 `sudo systemctl enable zram`
 ### Start zram.service.
 `sudo systemctl start zram`
+
 
 # Disbale or remove zram.service.
 ### Stop zram.service.
